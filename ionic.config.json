@@ -1,0 +1,7 @@
+{
+  "name": "CaloryApp",
+  "integrations": {
+    "capacitor": {}
+  },
+  "type": "react-vite"
+}
