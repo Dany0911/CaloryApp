@@ -1,7 +1,12 @@
+import React from 'react';
 import { Redirect, Route } from 'react-router-dom';
-import { IonApp, IonRouterOutlet, setupIonicReact } from '@ionic/react';
+import { IonApp, IonRouterOutlet, IonSplitPane, setupIonicReact } from '@ionic/react';
 import { IonReactRouter } from '@ionic/react-router';
-import Home from './pages/Home';
+import SideMenu from './components/SideMenu';
+import CaloryIntake from './pages/CaloryIntake';
+import ExercisePage from './pages/ExercisePage';
+import Calculator from './pages/Calculator';
+import UserInfo from './pages/UserInfo';
 
 /* Core CSS required for Ionic components to work properly */
 import '@ionic/react/css/core.css';
@@ -28,12 +33,15 @@ const App: React.FC = () => (
   <IonApp>
     <IonReactRouter>
       <IonRouterOutlet>
-        <Route exact path="/home">
-          <Home />
-        </Route>
-        <Route exact path="/">
-          <Redirect to="/home" />
-        </Route>
+        <IonSplitPane contentId="main">
+          <SideMenu />
+          <IonRouterOutlet id="main">
+            <Route path="/calory-intake" component={CaloryIntake} exact/>
+            <Route path="/exercise-page" component={ExercisePage} exact />
+            <Route path="/calculator" component={Calculator} exact />
+            <Route path="/user-info" component={UserInfo} exact />
+          </IonRouterOutlet>
+        </IonSplitPane>
       </IonRouterOutlet>
     </IonReactRouter>
   </IonApp>
